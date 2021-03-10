@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hung's Weather Dashboard</title>
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
-<body>
-    <header>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hung's Weather Dashboard</title>
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+    </head>
+    <body>
+        <header>
+            <div class="dashboard-title">
+                <h2 class="title" id="title">Weather Dashboard</h2>
+            </div>
+        </header>
 
-    </header>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 city-search-list" id="city-search-list">
+                        <div class="search-container" id="search-container">
+                            <label for="cityname">Search for a City:</label>
+                            <input type="text" id="cityname" name="cityname">
+                            <i class="fas fa-search-location"></i>
+                        </div>
+                        <div class="history-container" id="history-container">
+                            <textarea col=20 rows=15></textarea>
+                        </div>
+                    </div>
+                    <div class="col-9 weather-content" id="weather-content">
+                        <div class="current-weather">
+                            Atlanta
+                        </div>
+                        <div class="weather-forecast">
+                            5-day Forecast
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-    <main>
-
-    </main>
-
-    <footer>
-        
-    </footer>
+        <footer>
+            
+        </footer>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
-    <script src="assets/js/app.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+        <script src="assets/js/app.js"></script>
+    </body>
 </html>

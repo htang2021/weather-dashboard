@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body {
+    margin: 50px;
+}
+.dashboard-title {
+    background-color: black;
+    text-align: center;
+    height: 60px;
+}
+.title {
+    color: white;
+    position: relative; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+.city-search-list {
+    border: 1px solid blue;
+}
+label, input {
+    display:block;
+}
+.weather-content {
+    border: 1px solid brown;
+}
+.current-weather {
+    border: 1px solid black;
+    height: 200px;
+}
+.weather-forecast {
+    height: 200px;
+    border: 1px solid green;
+}
+
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+
+
+
+
+}
