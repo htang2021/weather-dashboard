@@ -1,53 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hung's Weather Dashboard</title>
-        <!-- MDB -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
-    </head>
-    <body>
-        <header>
-            <div class="dashboard-title">
-                <h2 class="title" id="title">Weather Dashboard</h2>
-            </div>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <title>Hung's Weather Dashboard</title>
+    <!-- MDB and native -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+    <div class="container g-0">
+        <!-- Title Row -->
+        <div class="row">
+            <header>
+                <div class="dashboard-title">
+                    <h2 class="title" id="title">Weather Dashboard</h2>
+                </div>
+            </header>
+        </div>
 
-        <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col-3 city-search-list" id="city-search-list">
-                        <div class="search-container" id="search-container">
-                            <label for="cityname">Search for a City:</label>
-                            <input type="text" id="cityname" name="cityname">
-                            <i class="fas fa-search-location"></i>
+        <!-- main ection row -->
+        <div class="row g-0">
+            <!-- left column on search and search history -->
+            <div class="col-md-4 city-container" id="city-container">
+
+                <div class="city-search-container" id="city-search-container">
+                    <!-- Search Input -->
+                    <label for="cityname">Search for a City:</label>
+                    <div class="row g-0">
+                        <div class="col-8 input-box">
+                            <input type="text" id="cityname-input" name="cityname">
                         </div>
-                        <div class="history-container" id="history-container">
-                            <textarea col=20 rows=15></textarea>
-                        </div>
-                    </div>
-                    <div class="col-9 weather-content" id="weather-content">
-                        <div class="current-weather">
-                            Atlanta
-                        </div>
-                        <div class="weather-forecast">
-                            5-day Forecast
+                        <div class="col-4 button-box">
+                            <button type="button" class="btn"><i class="fas fa-search-location"></i></button>
                         </div>
                     </div>
                 </div>
+
+                <!-- container to store searched city history -->
+                <div class="history-container" id="history-container">
+                    <textarea col=20 rows=15></textarea>
+                </div>
+
             </div>
-        </main>
+            <!-- right column displays current and forecast weather -->
+            <div class="col-md-8 weather-content" id="weather-content">
+                <!-- Current weather section below -->
+                <div class="current-weather">
+                    <h3>
+                        <span id="display-cityname">Atlanta</span>
+                        <span id="date"></span>
+                        <span id="weatherIcon"></span>
+                    </h3>
+                    <p class="temp-stat" id="temperature">Temperature:</p>
+                    <p class="temp-stat" id="humidity">Humidity:</p>
+                    <p class="temp-stat" id="wind-speed">Wind Speed:</p>
+                    <p class="temp-stat" id="uv-index">UV Index:</p>
+                </div>
 
-        <footer>
-            
-        </footer>
-
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
-        <script src="assets/js/app.js"></script>
-    </body>
+                <!-- Weather forecast section below -->
+                <div class="weather-forecast">
+                    <h3>5-day Forecast</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- javascript resources from moment.js, mdbootstrap.js, and native -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
 </html>
