@@ -4,7 +4,7 @@
     box-sizing: border-box;
   }
 body {
-    margin: 40px;
+    margin: 30px;
 }
 .dashboard-title {
     background-color: black;
@@ -65,15 +65,17 @@ input {
     border: 1px solid black;
     height: 200px;
 }
-#uv-index {
-    background-color: green;
-    color: white;
-    padding: 5px;
+.temp-stat {
+    font-size: medium;
 }
+/* #uv-color {
+    padding: 10px;
+    min-width: fit-content;
+} */
 
 .weather-forecast {
     margin-top: 20px;
-    height: 200px;
+    height: 240px;
     border: 1px solid green;
 }
 

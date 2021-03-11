@@ -25,6 +25,7 @@ var cityNameInputEl = document.querySelector("#cityname-input");
 var searchButtonEl = document.querySelector(".btn");
 var cityNameDisplayEl = document.querySelector("#display-cityname");
 var dateDisplayEl = document.querySelector("#date");
+var weatherIconEl = document.querySelector("#weatherIcon");
 var temperatureDisplayEl = document.querySelector("#temperature");
 var humidityDisplayEl = document.querySelector("#humidity");
 var windSpeedDisplayEl = document.querySelector("#wind-speed");
@@ -94,17 +95,30 @@ var uvColorCode = function (uvIndex) {
     }
 }
 
+// var weatherIcon = function(weatherSkyIcon) {
+//     var iconBaseUrl = "https://openweathermap.org/img/w/";
+//     switch(weatherSkyIcon) {
+//         case "02n":
+//             return (iconBaseUrl+"02n");
+//         //case 
+//     }
+// }
+
 // Display current weather
 var displayCurrentWeather = function(data, uvIndex) {
     console.log(data);
+    var weatherSkyIcon = data.weather[0].icon;
     cityNameDisplayEl.textContent = data.name;
     dateDisplayEl.textContent = `(${dateDisplay})`;
-    temperatureDisplayEl.textContent = `Temperature: ${data.main.temp} <span>&#8457;</span>`;
+    weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherSkyIcon}.png" />`;
+    temperatureDisplayEl.textContent = `Temperature: ${data.main.temp} \u00B0F`;
     humidityDisplayEl.textContent = `Humidity: ${data.main.humidity}%`;
     windSpeedDisplayEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
     //windSpeedDisplayEl.textContent = "Wind Speed: " + (data.wind.speed/2.237).toFixed(1) + " MPH";
+    // var uvColor = document.querySelector("#uv-color");
+    // uvColor.innerHTML=uvIndex;
     uvIndexDisplayEl.textContent = "UV Index: " + uvIndex;
-    uvColorCode(uvIndex);
+    //uvColorCode(uvIndex);
 }
 // get city weather
 var getCityWeather = function(cityNameInput) {
