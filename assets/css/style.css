@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body {
+    margin: 30px;
+}
+.dashboard-title {
+    background-color: black;
+    text-align: center;
+    height: 60px;
+}
+.title {
+    color: white;
+    position: relative; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+.city-container {
+    border: 1px solid blue;
+    width: 30%;
+}
+
+.city-search-container {
+    border: 1px solid red;
+} 
+label {
+    display:block;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+input {
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.btn {
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 9px 14px;
+    font-size: 15px;
+    margin-top: 5px;
+    /*cursor: pointer; */
+}
+.btn:hover {
+    background-color: royalblue;
+}
+.input-box, .button-box {
+    /* border: 1px solid black; */
+    height: 45px;
+}
+
+.history-container {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.list-group-item {
+    margin-right: 15px;
+}
+.weather-content {
+    border: 1px solid brown;
+    width: 70%;
+}
+.current-weather {
+    margin-top: 20px;
+    margin-left: 20px;
+    min-height: 250px;
+}
+#display-cityname {
+    font-weight: bolder;
+}
+#uv-color {
+    padding: 10px;
+    border-radius: 6px;
+}
+.temp-stat {
+    font-size: medium;
+}
+/* #uv-color {
+    padding: 10px;
+    min-width: fit-content;
+} */
+
+.weather-forecast {
+    margin-top: 20px;
+    min-height: 240px;
+    /* border: 1px solid green; */
+}
+.weather-forecast h3 {
+    /* border: 1px solid blue; */
+    display: block;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card-title {
+    font-weight: bolder;
+}
+.card {
+    width: 18%;
+    background-color: dodgerblue;
+    color: white;
+    min-height: 180px;
+    border-radius: 10px;
+}
+/* .card-body {
+    border: 1px solid brown;
+} */
+
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+
+
+
+
+}
