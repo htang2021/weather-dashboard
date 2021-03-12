@@ -36,6 +36,7 @@ input {
     height: 40px;
     margin-top: 5px;
     margin-left: 10px;
+    padding-left: 15px;
 }
 .btn {
     background-color: dodgerblue;
@@ -76,6 +77,12 @@ input {
 #uv-color {
     padding: 10px;
     border-radius: 6px;
+}
+#weatherIcon {
+    background-color: dodgerblue;
+    padding: 5px 10px;
+    min-width: 50px;
+    border-radius: 5px;
 }
 .temp-stat {
     font-size: medium;
