@@ -3,6 +3,7 @@
 var oWeatherCurrentApiUrl = "https://api.openweathermap.org/data/2.5/"; //weather";
 var oWeatherForecastApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 var apiKey = "19e33daac2abbca4e02ccd35af360aee";
+var iconBaseUrl = "https://openweathermap.org/img/w/";
 
 // 5 day weather forecast 
 // Call 5 day / 3 hour forecast data
@@ -73,7 +74,7 @@ var getUvIndex = function(data) {
             alert("Unable to connect to OpenWeather");
         });
 }
-
+////////////////////////////////////////////////////////////
 var uvColorCode = function (uvIndex) {
     var uvColor = "";
 
@@ -94,23 +95,14 @@ var uvColorCode = function (uvIndex) {
         uvIndexDisplayEl.setAttribute("style", "background-color: green;");
     }
 }
-
-// var weatherIcon = function(weatherSkyIcon) {
-//     var iconBaseUrl = "https://openweathermap.org/img/w/";
-//     switch(weatherSkyIcon) {
-//         case "02n":
-//             return (iconBaseUrl+"02n");
-//         //case 
-//     }
-// }
-
-// Display current weather
+//////////////////////////////////////////////////////////////////
+// Display current weather **********************************
 var displayCurrentWeather = function(data, uvIndex) {
     console.log(data);
     var weatherSkyIcon = data.weather[0].icon;
     cityNameDisplayEl.textContent = data.name;
     dateDisplayEl.textContent = `(${dateDisplay})`;
-    weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherSkyIcon}.png" />`;
+    weatherIconEl.innerHTML = `<img src="${iconBaseUrl}${weatherSkyIcon}.png" />`;
     temperatureDisplayEl.textContent = `Temperature: ${data.main.temp} \u00B0F`;
     humidityDisplayEl.textContent = `Humidity: ${data.main.humidity}%`;
     windSpeedDisplayEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
@@ -121,15 +113,32 @@ var displayCurrentWeather = function(data, uvIndex) {
     //uvColorCode(uvIndex);
 }
 
-// Displays 5-days forecast
+// Displays 5-days forecast **********************************
 var displayForecast = function(forecastData) {
 
-    //forecast based on current time and determining next block of quarterly hour 
-    //in the 24-hour period, 0, 3, 6, 9, 12, 15, 18, 21 (8 quarters of 3-hourly blocks)
+    //forecast based on time of search and determining which block of quarterly hour 
+    //in the 24-hour period, 0(24), 3, 6, 9, 12, 15, 18, 21 (8 quarters/day with 3-hourly blocks)
     //for the next 5 days - openWeather provides 8 sets of data points per day for its forecast
     //information.
-    var forecastIndex = timeBlock();
-    // Loop through 
+
+    var forecastIndex = timeBlock(); //initial time block assignment
+    var day = 1; //initializing forecast day 1
+
+    // Loop through response(forecastData) index for the corresponding 5 datapoints
+    for (let i=0; i < 40; i+=8) {
+
+        var newDate = moment(forecastData.list[i].dt_txt).format('l');
+        var iconCode = forecastData.list[i].weather[0].icon;
+        var newTemp = forecastData.list[i].main.temp;
+        var newHumidity = forecastData.list[i].main.humidity;
+        console.log("i is " + i + ", Next date: " + newDate + " and forecastIndex is: " + forecastIndex);
+        document.getElementById("day"+day).textContent = newDate;
+        document.getElementById("icon"+day).innerHTML = `<img src="${iconBaseUrl}${iconCode}.png" alt="weather icon" />`;
+        document.getElementById("temp"+day).textContent = `Temp: ${newTemp} \u00B0F`;
+        document.getElementById("humidity"+day).textContent = `Humidity: ${newHumidity}%`;
+        forecastIndex += 8;
+        day++;
+    }
 
 }
 // Fxn to determine which of the 8 datapoints to use from openWeather

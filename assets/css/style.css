@@ -90,8 +90,9 @@ input {
 }
 .card {
     width: 18%;
-    background-color: blue;
+    background-color: dodgerblue;
     color: white;
+    height: 180px;
 }
 .card-body {
     border: 1px solid brown;
