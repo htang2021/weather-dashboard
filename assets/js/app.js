@@ -120,6 +120,40 @@ var displayCurrentWeather = function(data, uvIndex) {
     uvIndexDisplayEl.textContent = "UV Index: " + uvIndex;
     //uvColorCode(uvIndex);
 }
+
+// Displays 5-days forecast
+var displayForecast = function(forecastData) {
+
+    //forecast based on current time and determining next block of quarterly hour 
+    //in the 24-hour period, 0, 3, 6, 9, 12, 15, 18, 21 (8 quarters of 3-hourly blocks)
+    //for the next 5 days - openWeather provides 8 sets of data points per day for its forecast
+    //information.
+    var forecastIndex = timeBlock();
+    // Loop through 
+
+}
+// Fxn to determine which of the 8 datapoints to use from openWeather
+function timeBlock() {
+    var currentHour = moment().format("HH");
+    if (currentHour >= 21) {
+        return 7;
+    } else if (currentHour >= 18) {
+        return 6;
+    } else if (currentHour >= 15) {
+        return 5;
+    } else if (currentHour >= 12) {
+        return 4;
+    } else if (currentHour >=9) {
+        return 3;
+    } else if (currentHour >=6) {
+        return 2;
+    } else if (currentHour >=3) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 // get city weather
 var getCityWeather = function(cityNameInput) {
     // format the openWeather api url
@@ -137,6 +171,25 @@ var getCityWeather = function(cityNameInput) {
                 });
             } else {
                 alert("Error: " + response.statusText);
+            }
+        })
+        .catch(function(error) {
+            alert("Unable to connect to OpenWeather");
+        });
+
+    // make a request to the 5-day forecast URL
+    forcastApiUrl = `${oWeatherForecastApiUrl}?q=${cityNameInput}&units=imperial&appid=${apiKey}`;
+    fetch(forcastApiUrl)
+        .then(function(res) {
+            //request was successful
+            if (res.ok) {
+                res.json().then(function(forecastData) {
+                    console.log("Forecast data below!");
+                    console.log(forecastData);
+                    displayForecast(forecastData);
+                });
+            } else {
+                alert("Error: " + res.statusText);
             }
         })
         .catch(function(error) {
