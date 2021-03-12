@@ -23,7 +23,7 @@
         <!-- main ection row -->
         <div class="row g-0">
             <!-- left column on search and search history -->
-            <div class="col-md-3 city-container" id="city-container">
+            <div class="city-container" id="city-container">
 
                 <div class="city-search-container" id="city-search-container">
                     <!-- Search Input -->
@@ -40,23 +40,29 @@
 
                 <!-- container to store searched city history -->
                 <div class="history-container" id="history-container">
-                    <textarea col=20 rows=15></textarea>
+                    <ul class="list-group">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item"></li>
+                      </ul>
                 </div>
 
             </div>
             <!-- right column displays current and forecast weather -->
-            <div class="col-md-9 weather-content" id="weather-content">
+            <div class="weather-content" id="weather-content">
                 <!-- Current weather section below -->
                 <div class="current-weather">
                     <h3>
-                        <span id="display-cityname">Atlanta</span>
+                        <span id="display-cityname">Your City</span>
                         <span id="date"></span>
                         <span id="weatherIcon"></span>
                     </h3>
                     <p class="temp-stat" id="temperature">Temperature:</p>
                     <p class="temp-stat" id="humidity">Humidity:</p>
                     <p class="temp-stat" id="wind-speed">Wind Speed:</p>
-                    <p class="temp-stat" id="uv-index">UV Index:</p><span id="uv-color"></span>
+                    <p class="temp-stat" id="uv-index">UV Index: <span id="uv-color"></span></p>
                 </div>
 
                 <!-- Weather forecast section below -->
