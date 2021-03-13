@@ -4,7 +4,7 @@ var oWeatherCurrentApiUrl = "https://api.openweathermap.org/data/2.5/";
 var oWeatherForecastApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 var apiKey = "19e33daac2abbca4e02ccd35af360aee";
 var iconBaseUrl = "https://openweathermap.org/img/w/";
-
+var savedList = [];
 
 // moment.js for date formatting
 var dateDisplay = moment().format('l');
@@ -18,6 +18,8 @@ var temperatureDisplayEl = document.querySelector("#temperature");
 var humidityDisplayEl = document.querySelector("#humidity");
 var windSpeedDisplayEl = document.querySelector("#wind-speed");
 var uvIndexDisplayEl = document.querySelector("#uv-index");
+var savedListGroupEl = document.querySelector(".list-group");
+
 
 // Search handler ********************************************
 var searchBtnHandler = function(event) {
@@ -72,24 +74,65 @@ var uvColorCode = function (uvColorEl, uvIndex) {
     }
 }
 
+// Displaying what's stored in localStorage*****************
+var displaySavedSearch = function() {
+
+    savedListGroupEl.textContent = "";
+    var mySearchList = JSON.parse(localStorage.getItem("searchList"));
+    if (mySearchList) {
+        mySearchList.forEach(createListEl);
+        function createListEl(savedItem) {
+            var listItem = document.createElement("li");
+            listItem.className = "list-group-item";
+            listItem.textContent = savedItem;
+            savedListGroupEl.appendChild(listItem);
+        }
+    }
+}
+
+// Save searched city to localStorage ***********************
+var saveSearch = function (cityName) {
+
+    if (localStorage.length > 0) {
+        var storedList = JSON.parse(localStorage.getItem("searchList"));
+        savedList = storedList;
+    }
+    console.log("The new savedList now contains: " + savedList);
+
+    // add to list if the first of the savedList is not the same as the last searched city
+    if (savedList[0] !== cityName) {
+        savedList.unshift(cityName);
+        // Limiting search history to 10 entries
+        if (savedList.length >= 11) {
+            savedList.pop();
+        }
+        // write savedList to localStorage
+        localStorage.setItem("searchList", JSON.stringify(savedList));
+    }
+    displaySavedSearch();
+}
+
 // Display current weather **********************************
 var displayCurrentWeather = function(data, uvIndex) {
     var weatherSkyIcon = data.weather[0].icon;
 
     // City, Date, and weather icon
-    cityNameDisplayEl.textContent = data.name;
-    dateDisplayEl.textContent = `(${dateDisplay})`;
-    weatherIconEl.innerHTML = `<img src="${iconBaseUrl}${weatherSkyIcon}.png" />`;
+    cityNameDisplayEl.textContent = data.name; // City Name
+    dateDisplayEl.textContent = `(${dateDisplay})`;  // Date
+    weatherIconEl.innerHTML = `<img src="${iconBaseUrl}${weatherSkyIcon}.png" />`; // Icon
     // Weather stats
-    temperatureDisplayEl.textContent = `Temperature: ${data.main.temp} \u00B0F`;
-    humidityDisplayEl.textContent = `Humidity: ${data.main.humidity}%`;
+    temperatureDisplayEl.textContent = `Temperature: ${data.main.temp} \u00B0F`; // Deg Farenheit
+    humidityDisplayEl.textContent = `Humidity: ${data.main.humidity}%`; 
     windSpeedDisplayEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
 
     var uvColorEl = document.querySelector("#uv-color");
-    uvColorEl.textContent = uvIndex;
+    uvColorEl.textContent = uvIndex;  // UV Index
 
     // Call the uvColorCode fxn to color code the UV Index
     uvColorCode(uvColorEl, uvIndex);
+
+    // call saveSearch fxn to save city name to localStorage
+    saveSearch(data.name);
 }
 
 // Displays 5-days forecast **********************************
@@ -144,7 +187,7 @@ function timeBlock() {
     }
 }
 
-// get city weather ***********************************************
+// get current city weather ***********************************************
 var getCityWeather = function(cityNameInput) {
     // format the openWeather api url
     var apiUrl = `${oWeatherCurrentApiUrl}weather?q=${cityNameInput}&units=imperial&appid=${apiKey}`;
@@ -183,5 +226,28 @@ var getCityWeather = function(cityNameInput) {
         });
 }
 
+// Displays the last searched result when page refreshes
+var landingView = function() {
+    if (localStorage.length > 0) {
+        var mySearchList = JSON.parse(localStorage.getItem("searchList"));
+        // query the last searched city stored in localstorage
+        getCityWeather(mySearchList[0]);
+    }
+
+    displaySavedSearch();
+}
+
+// Fetch city weather from the saved list with event target method
+var listItemHandler = function(event) {
+    event.preventDefault();
+
+    var clickedItem = event.target.textContent;
+    getCityWeather(clickedItem);
+}
+
+landingView();
 searchButtonEl.addEventListener("click", searchBtnHandler);
+
+savedListGroupEl.addEventListener("click", listItemHandler);
+
 

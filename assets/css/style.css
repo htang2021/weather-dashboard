@@ -19,13 +19,14 @@ body {
     transform: translate(-50%, -50%);
 }
 .city-container {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 30%;
 }
 
-.city-search-container {
+/* .city-search-container {
     border: 1px solid red;
-} 
+}  */
+
 label {
     display:block;
     margin-top: 5px;
@@ -36,6 +37,7 @@ input {
     height: 40px;
     margin-top: 5px;
     margin-left: 10px;
+    padding-left: 15px;
 }
 .btn {
     background-color: dodgerblue;
@@ -62,7 +64,7 @@ input {
     margin-right: 15px;
 }
 .weather-content {
-    border: 1px solid brown;
+    /* border: 1px solid brown; */
     width: 70%;
 }
 .current-weather {
@@ -76,6 +78,12 @@ input {
 #uv-color {
     padding: 10px;
     border-radius: 6px;
+}
+#weatherIcon {
+    background-color: dodgerblue;
+    padding: 5px 10px;
+    min-width: 50px;
+    border-radius: 5px;
 }
 .temp-stat {
     font-size: medium;
