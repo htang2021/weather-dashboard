@@ -241,12 +241,22 @@ var landingView = function() {
 var listItemHandler = function(event) {
     event.preventDefault();
 
-    var clickedItem = event.target.textContent;
-    getCityWeather(clickedItem);
+    var clickedElement = event.target;
+    clickedElement.className += " active";
+    var clickedCity = clickedElement.textContent
+
+    getCityWeather(clickedCity);
 }
 
 landingView();
 searchButtonEl.addEventListener("click", searchBtnHandler);
+
+cityNameInputEl.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        searchButtonEl.click();
+    }
+});
 
 savedListGroupEl.addEventListener("click", listItemHandler);
 
