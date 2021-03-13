@@ -97,7 +97,6 @@ var saveSearch = function (cityName) {
         var storedList = JSON.parse(localStorage.getItem("searchList"));
         savedList = storedList;
     }
-    console.log("The new savedList now contains: " + savedList);
 
     // add to list if the first of the savedList is not the same as the last searched city
     if (savedList[0] !== cityName) {
@@ -114,8 +113,12 @@ var saveSearch = function (cityName) {
 
 // Display current weather **********************************
 var displayCurrentWeather = function(data, uvIndex) {
-    var weatherSkyIcon = data.weather[0].icon;
 
+    // Call 5-day forecast fxn from here
+    getForecast(data.name);
+
+    // assign weather icon code
+    var weatherSkyIcon = data.weather[0].icon;
     // City, Date, and weather icon
     cityNameDisplayEl.textContent = data.name; // City Name
     dateDisplayEl.textContent = `(${dateDisplay})`;  // Date
@@ -187,6 +190,27 @@ function timeBlock() {
     }
 }
 
+// get 5-day forecast *****************************************************
+var getForecast = function (cityNameInput) {
+
+    // make a request to the 5-day forecast endpoint ------------
+    forcastApiUrl = `${oWeatherForecastApiUrl}?q=${cityNameInput}&units=imperial&appid=${apiKey}`;
+    fetch(forcastApiUrl)
+        .then(function(res) {
+            //request was successful
+            if (res.ok) {
+                res.json().then(function(forecastData) {
+                    displayForecast(forecastData);
+                });
+            } else {
+                alert("Error: " + res.statusText);
+            }
+        })
+        .catch(function(error) {
+            alert("Unable to connect to OpenWeather");
+        });
+}
+
 // get current city weather ***********************************************
 var getCityWeather = function(cityNameInput) {
     // format the openWeather api url
@@ -201,24 +225,7 @@ var getCityWeather = function(cityNameInput) {
                     getUvIndex(data);
                 });
             } else {
-                alert("Error: " + response.statusText);
-            }
-        })
-        .catch(function(error) {
-            alert("Unable to connect to OpenWeather");
-        });
-
-    // make a request to the 5-day forecast endpoint ------------
-    forcastApiUrl = `${oWeatherForecastApiUrl}?q=${cityNameInput}&units=imperial&appid=${apiKey}`;
-    fetch(forcastApiUrl)
-        .then(function(res) {
-            //request was successful
-            if (res.ok) {
-                res.json().then(function(forecastData) {
-                    displayForecast(forecastData);
-                });
-            } else {
-                alert("Error: " + res.statusText);
+                alert("Error: Invalid city name or city " + response.statusText + ".\nPlease try again!");
             }
         })
         .catch(function(error) {
@@ -241,13 +248,25 @@ var landingView = function() {
 var listItemHandler = function(event) {
     event.preventDefault();
 
-    var clickedItem = event.target.textContent;
-    getCityWeather(clickedItem);
+    var clickedElement = event.target;
+    clickedElement.className += " active";
+    var clickedCity = clickedElement.textContent
+
+    getCityWeather(clickedCity);
 }
 
+// landing or page refresh
 landingView();
+
 searchButtonEl.addEventListener("click", searchBtnHandler);
 
+// Enter key to triggers a click event 
+cityNameInputEl.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        searchButtonEl.click();
+    }
+});
+
+// Function to pull weather data for the saved list of searched cities
 savedListGroupEl.addEventListener("click", listItemHandler);
-
-
