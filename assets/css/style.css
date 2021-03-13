@@ -19,13 +19,14 @@ body {
     transform: translate(-50%, -50%);
 }
 .city-container {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 30%;
 }
 
-.city-search-container {
+/* .city-search-container {
     border: 1px solid red;
-} 
+}  */
+
 label {
     display:block;
     margin-top: 5px;
@@ -63,7 +64,7 @@ input {
     margin-right: 15px;
 }
 .weather-content {
-    border: 1px solid brown;
+    /* border: 1px solid brown; */
     width: 70%;
 }
 .current-weather {

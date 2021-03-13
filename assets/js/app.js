@@ -93,8 +93,6 @@ var displaySavedSearch = function() {
 // Save searched city to localStorage ***********************
 var saveSearch = function (cityName) {
 
-    //var storedList = JSON.parse(localStorage.getItem("searchList"));
-
     if (localStorage.length > 0) {
         var storedList = JSON.parse(localStorage.getItem("searchList"));
         savedList = storedList;
@@ -111,7 +109,6 @@ var saveSearch = function (cityName) {
         // write savedList to localStorage
         localStorage.setItem("searchList", JSON.stringify(savedList));
     }
-
     displaySavedSearch();
 }
 
@@ -240,7 +237,17 @@ var landingView = function() {
     displaySavedSearch();
 }
 
+// Fetch city weather from the saved list with event target method
+var listItemHandler = function(event) {
+    event.preventDefault();
+
+    var clickedItem = event.target.textContent;
+    getCityWeather(clickedItem);
+}
+
 landingView();
 searchButtonEl.addEventListener("click", searchBtnHandler);
+
+savedListGroupEl.addEventListener("click", listItemHandler);
 
 
