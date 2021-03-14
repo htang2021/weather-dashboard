@@ -25,50 +25,56 @@ body {
 }
 
 label {
+    font-size: 20px;
     display:block;
     margin-top: 5px;
     margin-left: 10px;
     font-weight: bolder;
 }
-input {
-    height: 40px;
+
+/* Input box */
+form.input-box input[type=text] {
+    height: 45px;
     margin-top: 5px;
     margin-left: 10px;
-    padding-left: 15px;
+    margin-right: 0px;
+    padding: 15px;
+    width: 72%;
+    border: 1px solid lightgray;
 }
-.btn {
+form.input-box button {
     background-color: dodgerblue;
-    border: none;
+    border: 1px solid grey;
+    border-left: none;
     color: white;
     padding: 9px 14px;
     font-size: 15px;
     margin-top: 5px;
-    /*cursor: pointer; */
+    margin-left: 0px;
+    width: 20%;
+    height: 45px;
 }
 .btn:hover {
     background-color: royalblue;
 }
-.input-box, .button-box {
-    /* border: 1px solid black; */
-    height: 45px;
-}
 
+/* Search history of cities */
 .history-container {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 10px;
 }
 .list-group-item {
     margin-right: 15px;
 }
-/* .active {
-    background-color: dodgerblue;
-} */
+
 .list-group-item:hover {
     background-color: dodgerblue;
     color: white;
     font-size: large;
     font-weight: bolder;
 }
+
+/* Weather content display container */
 .weather-content {
     width: 72%;
 }
@@ -97,17 +103,17 @@ input {
     font-size: medium;
 }
 
+/* Weather forecast container */ 
 .weather-forecast {
     margin-top: 20px;
     margin-left: 15px;
     min-height: 240px;
- 
 }
 .weather-forecast h3 {
-    /* border: 1px solid blue; */
     display: block;
     font-weight: bolder;
 }
+/* 5 cards within flex to wrap cards */
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -126,10 +132,16 @@ input {
     margin-bottom: 10px;
 }
 
-
 /* MEDIA QUERY FOR smaller screen size */
 @media screen and (max-width: 1200px) {
 
+    form.input-box input[type=text] {
+        width: 91%;
+    }
+    form.input-box button {
+        margin-left: 10px;
+        width: 91%;
+    }
     .card-container {
         display: flex;
         flex-wrap: wrap;
