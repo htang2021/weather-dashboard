@@ -239,6 +239,9 @@ var landingView = function() {
         var mySearchList = JSON.parse(localStorage.getItem("searchList"));
         // query the last searched city stored in localstorage
         getCityWeather(mySearchList[0]);
+    } else {
+        //Default to a city 
+        getCityWeather("Berkeley");
     }
 
     displaySavedSearch();
@@ -255,7 +258,7 @@ var listItemHandler = function(event) {
     getCityWeather(clickedCity);
 }
 
-// landing or page refresh
+// landing or page refresh (Default to Berkeley initially)
 landingView();
 
 searchButtonEl.addEventListener("click", searchBtnHandler);

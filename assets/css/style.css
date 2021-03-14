@@ -1,15 +1,16 @@
+/* Remove browser defaults */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 body {
     margin: 30px;
 }
 .dashboard-title {
     background-color: black;
     text-align: center;
-    height: 60px;
+    height: 70px;
 }
 .title {
     color: white;
@@ -18,60 +19,62 @@ body {
     left: 50%; 
     transform: translate(-50%, -50%);
 }
+/* left column width for search and list of searched cities */
 .city-container {
-    /* border: 1px solid blue; */
     width: 28%;
 }
 
-/* .city-search-container {
-    border: 1px solid red;
-}  */
-
 label {
+    font-size: 20px;
     display:block;
     margin-top: 5px;
     margin-left: 10px;
     font-weight: bolder;
 }
-input {
-    height: 40px;
+
+/* Input box */
+form.input-box input[type=text] {
+    height: 45px;
     margin-top: 5px;
     margin-left: 10px;
-    padding-left: 15px;
+    margin-right: 0px;
+    padding: 15px;
+    width: 72%;
+    border: 1px solid lightgray;
 }
-.btn {
+form.input-box button {
     background-color: dodgerblue;
-    border: none;
+    border: 1px solid grey;
+    border-left: none;
     color: white;
     padding: 9px 14px;
     font-size: 15px;
     margin-top: 5px;
-    /*cursor: pointer; */
+    margin-left: 0px;
+    width: 20%;
+    height: 45px;
 }
 .btn:hover {
     background-color: royalblue;
 }
-.input-box, .button-box {
-    /* border: 1px solid black; */
-    height: 45px;
-}
 
+/* Search history of cities */
 .history-container {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 10px;
 }
 .list-group-item {
     margin-right: 15px;
 }
-/* .active {
-    background-color: dodgerblue;
-} */
+
 .list-group-item:hover {
     background-color: dodgerblue;
     color: white;
     font-size: large;
     font-weight: bolder;
 }
+
+/* Weather content display container */
 .weather-content {
     width: 72%;
 }
@@ -100,40 +103,52 @@ input {
     font-size: medium;
 }
 
+/* Weather forecast container */ 
 .weather-forecast {
     margin-top: 20px;
     margin-left: 15px;
     min-height: 240px;
- 
 }
 .weather-forecast h3 {
-    /* border: 1px solid blue; */
     display: block;
     font-weight: bolder;
 }
+/* 5 cards within flex to wrap cards */
 .card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 100%;
 }
 .card-title {
     font-weight: bolder;
 }
-.card {
-    width: 18%;
+.card-container .card {
+    width: 150px;
     background-color: dodgerblue;
     color: white;
     min-height: 180px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
-/* .card-body {
-    border: 1px solid brown;
-} */
 
-/* MEDIA QUERY FOR TABLETS AND SMALLER */
-@media screen and (max-width: 768px) {
+/* MEDIA QUERY FOR smaller screen size */
+@media screen and (max-width: 1200px) {
 
-
-
-
+    form.input-box input[type=text] {
+        width: 91%;
+    }
+    form.input-box button {
+        margin-left: 10px;
+        width: 91%;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        width: 100%;
+    }
+    .card {
+        margin-right: 15px;
+    }
 }
