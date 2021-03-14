@@ -58,7 +58,7 @@ var getUvIndex = function(data) {
             alert("Unable to connect to OpenWeather");
         });
 }
-// Color coding UV Index output *********************************
+// Color coding UV Index output - color def from EPA publication ******
 var uvColorCode = function (uvColorEl, uvIndex) {
 
     if (uvIndex >= 11) {
